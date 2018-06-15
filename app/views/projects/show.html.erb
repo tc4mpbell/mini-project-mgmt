@@ -17,6 +17,10 @@
     </tr>
   </thead>
   <tbody>
+    <%= render partial: "category_row", collection: @project.categories, as: :category %>
+
+    <%= render partial: "task_row", collection: @project.tasks.where(category: nil), as: :task %>
+
     <tr>
       <td>1</td>
       <td class='task'>Allow user to configure database server/password/username via a modal popup</td>
