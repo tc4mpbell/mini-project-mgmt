@@ -1,0 +1,50 @@
+<h1><%= @project.name %>!</h1>
+
+<nav>
+  <ul>
+    <li><a href="">Tasks</a></li>
+    <li><a href="">Settings</a></li>
+  </ul>
+</nav>
+
+<table valign='top'>
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>task</th>
+      <th style="width: 8em;">log time</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td class='task'>Allow user to configure database server/password/username via a modal popup</td>
+      <td>
+        <input type="date" name="" id="">
+        <input type="text" placeholder='hrs' style="width: 4em" />
+        <button>Save</button>
+      </td>
+      <td>
+        <div class="btn-group">
+          <!-- <select name="" id=""> -->
+          <!-- <a value="">--- choose status ---</a> -->
+          <a href="#" value="">I'm working on this</a>
+          <a href="#" value="">Blocked!</a>
+          <a href="#" value="">Ready for review</a>
+          <a href="#" value="">Failed testing</a>
+          <!-- </select> -->
+        </div>
+      </td>
+      <td><a href="">notes</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<form action="">
+  <label for="">Task</label>
+  <br>
+  <textarea name="name" rows="3" cols="80"></textarea>
+</form>
+
+<button>Add a task</button>

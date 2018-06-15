@@ -1,0 +1,128 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+body {
+  font-family: courier new, monospace;
+  font-size: 16px;
+  background: #333;
+}
+
+.container {
+  /* width: 00px; */
+  margin: 2em;
+  padding: 1em;
+
+  // &.boxed {
+  border: double 5px #aaf;
+  background: #fcfcfc;
+  // }
+
+  &.notices {
+    background: #ffa;
+    border-color: orange;
+  }
+  &.errors {
+    background: #faa;
+    border-color: red;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  padding: 0;
+  margin: 0 0 1rem 0;
+}
+
+/* spacing */
+ul,
+p,
+table,
+form,
+.field {
+  padding: 0;
+  margin: 1rem 0 1rem 0;
+}
+
+ul {
+  list-style-position: inside;
+}
+
+table {
+  width: 100%;
+}
+
+th {
+  text-align: left;
+}
+
+td,
+th {
+  padding: 0.3rem;
+  vertical-align: top;
+}
+
+input {
+  padding: 3px 7px;
+}
+
+button,
+input[type="submit"] {
+  text-transform: uppercase;
+  /* line-height: 1.2em; */
+  border-radius: 5px;
+  border: solid 1px #222;
+  background: #88f;
+  color: #fff;
+  padding: 3px 7px;
+  margin: 2px;
+  font-size: 14px;
+
+  transition: 0.1s;
+}
+
+button:hover,
+input[type="submit"]:hover {
+  background: yellow;
+  border-width: 3px;
+  margin: 0px;
+  color: #111;
+}
+
+// .text-right {
+//   display: block;
+//   align: right;
+// }
+
+// .white {
+//   color: #eee;
+// }
+
+.right {
+  text-align: right;
+}
+
+.task {
+  background: #fff;
+  font-size: 16px;
+}
+
+.comic {
+  font-family: marker felt, comic sans;
+}

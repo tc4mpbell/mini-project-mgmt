@@ -4,15 +4,28 @@
     <title>MiniProjectManagement</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <% if notice %>
+    <div class='container boxed notices'>
+      <p class="notice"><%= notice %></p>
+    </div>
+    <% end %>
 
-    <%= yield %>
+    <% if alert %>
+      <div class='container boxed errors'>
+        <p class="alert"><%= alert %></p>
+      </div>
+    <% end %>
+
+    <div class="container boxed">
+      <div class="right"><%= "#{["hello", "howdy", "hi", "g'day,", "top o' the mornin',"].sample.humanize} #{current_user.first_name}" %>
+        </div> 
+      <hr>
+      <%= yield %>
+    </div>
   </body>
 </html>

@@ -1,0 +1,3 @@
+<h2><%= current_organization.name %> projects:</h2>
+
+<%=  render partial: 'project_link', collection: current_organization.projects, as: :project %>

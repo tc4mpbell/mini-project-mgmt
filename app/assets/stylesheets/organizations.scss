@@ -1,0 +1,32 @@
+// Place all the styles related to the Organizations controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.project-link {
+  display: inline-block;
+  transform: rotate(10deg);
+
+  padding: 1em;
+  margin-bottom: 1em;
+  background: #ffa;
+
+  transition: 0.2s;
+
+  a {
+    color: #111;
+    text-shadow: 1px 1px #eee;
+    font-weight: bold;
+    font-size: 1.3em;
+  }
+
+  &:hover {
+    transform: rotate(0deg) !important;
+    background: #333 !important;
+    font-size: 18px;
+
+    a {
+      color: #fff;
+      text-shadow: 1px 1px #111;
+    }
+  }
+}
