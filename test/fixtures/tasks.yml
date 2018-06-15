@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  task: MyText
+  description: MyText
+  assignee: 1
+  status: 1
+
+two:
+  task: MyText
+  description: MyText
+  assignee: 1
+  status: 1
