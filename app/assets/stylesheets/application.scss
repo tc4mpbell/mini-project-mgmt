@@ -10,8 +10,9 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
+ *= require reboot
  *= require_self
+ *= require_tree .
  */
 
 body {
@@ -68,6 +69,10 @@ table {
   width: 100%;
 }
 
+thead th {
+  border-bottom: solid 1px #aaa;
+}
+
 th {
   text-align: left;
 }
@@ -83,6 +88,7 @@ input {
 }
 
 button,
+.btn,
 input[type="submit"] {
   text-transform: uppercase;
   /* line-height: 1.2em; */
@@ -98,6 +104,7 @@ input[type="submit"] {
 }
 
 button:hover,
+.btn:hover,
 input[type="submit"]:hover {
   background: yellow;
   border-width: 3px;
@@ -118,11 +125,19 @@ input[type="submit"]:hover {
   text-align: right;
 }
 
-.task {
-  background: #fff;
-  font-size: 16px;
-}
-
 .comic {
   font-family: marker felt, comic sans;
+}
+
+.row {
+  display: flex;
+
+  div {
+    // flex: 1;
+    padding: 0.1rem;
+  }
+}
+.header {
+  font-weight: bold;
+  border-bottom: solid 1px #ddd;
 }
