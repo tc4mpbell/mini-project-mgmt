@@ -30,3 +30,5 @@
 /config/master.key
 
 /db/seeds/development.rb
+
+.DS_Store

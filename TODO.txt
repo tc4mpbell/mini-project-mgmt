@@ -1,0 +1,6 @@
+TODO
+
+6-15
+- tasks table!
+- editable row component: swap out text for inputs
+- implement task/update.js.erb
