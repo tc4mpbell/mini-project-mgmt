@@ -1,1 +1,2 @@
-console.log("updated")
+// Update the row with the result
+document.querySelector(".row-task-<%= @task.id %>").innerHTML = "<%= escape_javascript render partial: '/tasks/row/task_row', locals: {task: @task} %>"

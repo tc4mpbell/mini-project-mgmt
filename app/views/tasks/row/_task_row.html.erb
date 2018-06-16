@@ -1,16 +1,16 @@
-<%= form_with model: task do |f| %>
+<%= form_with model: task, class: "row-task-#{task.id}" do |f| %>
   <div class="row">
     <div class='col-id'>
       <%= task.id %>
     </div>
     
     <div class='col-category'>
-      <%= category.name %>
+      <%= task&.category&.name || 'Uncategorized' %>
     </div>
 
     <div class='col-task'>
       <%#= task.task %>
-      <%= f.text_area :task, rows: 3 %>
+      <%= f.text_field :task, rows: 3 %>
     </div>
 
     <!--div class='col-log'>

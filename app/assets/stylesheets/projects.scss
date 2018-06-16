@@ -2,7 +2,8 @@
   font-size: 14px;
   min-width: 820px;
 
-  textarea {
+  textarea,
+  input[type="text"] {
     width: 100%;
   }
 }

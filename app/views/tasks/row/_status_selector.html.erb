@@ -1,6 +1,10 @@
 <div class="btn-group">
+  <div class="btn disabled">
+    <%= "#{task.status.humanize}!" %>
+  </div>
+
   <% task.available_statuses.each do |name| %>
-    <%= label :task, :status, value: name, class: 'btn' do %>
+    <%= label :task, :status, value: name, class: "btn" do %>
       <%= radio_button :task, :status, name %>
       <%= name.to_s.humanize %>
     <% end %>
