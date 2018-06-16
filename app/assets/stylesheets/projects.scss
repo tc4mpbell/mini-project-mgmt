@@ -1,6 +1,10 @@
 .tbl-tasks {
   font-size: 14px;
   min-width: 820px;
+
+  textarea {
+    width: 100%;
+  }
 }
 
 .col-id {
@@ -20,6 +24,10 @@
 }
 .col-assign {
   flex: 0 0 150px;
+
+  select {
+    max-width: 130px;
+  }
 }
 .col-notes {
   flex: 0 0 80px;

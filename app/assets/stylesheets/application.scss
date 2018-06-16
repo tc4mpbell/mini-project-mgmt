@@ -105,6 +105,8 @@ input[type="submit"] {
 button:hover,
 .btn:hover,
 input[type="submit"]:hover {
+  cursor: pointer;
+  text-decoration: underline;
   background: yellow;
   border-width: 3px;
   margin: 0px;
@@ -139,4 +141,28 @@ input[type="submit"]:hover {
 .header {
   font-weight: bold;
   border-bottom: solid 1px #ddd;
+}
+
+.btn-group {
+  display: flex;
+  flex-direction: column;
+
+  .btn {
+    margin: 0;
+    border-top: none;
+    border-radius: 0 0 0 0;
+
+    &:hover {
+      border-width: 1px;
+    }
+
+    &:first-child {
+      border-radius: 5px 5px 0 0;
+      border-top: solid 1px #222;
+    }
+
+    &:last-child {
+      border-radius: 0 0 5px 5px;
+    }
+  }
 }

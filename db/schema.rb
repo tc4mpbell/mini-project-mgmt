@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 2018_06_15_204254) do
     t.text "description"
     t.integer "project_id"
     t.integer "assignee_id"
-    t.integer "status"
+    t.integer "status", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "category_id"

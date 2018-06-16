@@ -6,7 +6,8 @@ class CreateTasks < ActiveRecord::Migration[5.2]
       t.references :project
       t.references :assignee, foreign_key: { to_table: :users }
 
-      t.integer :status
+      # default to ready for work
+      t.integer :status, null: false, default: 0
 
       t.timestamps
     end

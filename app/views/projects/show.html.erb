@@ -20,7 +20,7 @@
   <div class='body'>
     <%= render partial: "category_row", collection: @project.categories, as: :category %>
 
-    <%= render partial: "task_row", collection: @project.tasks.where(category: nil), as: :task %>
+    <%= render partial: "/tasks/row/task_row", collection: @project.tasks.where(category: nil), as: :task %>
   </div>
 </div>
 

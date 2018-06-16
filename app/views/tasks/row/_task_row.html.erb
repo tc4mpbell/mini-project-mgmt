@@ -3,13 +3,16 @@
     <div class='col-id'>
       <%= task.id %>
     </div>
+    
     <div class='col-category'>
       <%= category.name %>
     </div>
+
     <div class='col-task'>
-      <%= task.task %>
-      <%= f.text_area :task %>
+      <%#= task.task %>
+      <%= f.text_area :task, rows: 3 %>
     </div>
+
     <!--div class='col-log'>
       <a href="">&laquo;</a>
       1/2/18
@@ -17,25 +20,16 @@
       <input type="text" placeholder='hrs' style="width: 3em" />
       <button>Save</button>
     </div-->
+
     <div class='col-status'>
-      <div class="btn-group">
-        <%= Task.statuses[0] %>
-        <!-- <select name="" id=""> -->
-        <!-- <a value="">--- choose status ---</a> -->
-        <a href="#" value="">I'm working on this</a>
-        <a href="#" value="">Blocked!</a>
-        <a href="#" value="">Ready for review</a>
-        <a href="#" value="">Failed testing</a>
-        <!-- </select> -->
-      </div>
+      <%= render '/tasks/row/status_selector', task: task %>
     </div>
+
     <div class='col-assign'>
-      <select>
-        <option>
-          -- assign --
-        </option>
-      </select>
+      <%= f.collection_select :assignee_id, current_organization.users, :id, :full_name, prompt: '-- assignee --' %>
+      <a href="">assign to me</a>
     </div>
+
     <div class='col-notes'>
       <a href="">notes</a>
       <%= f.submit 'save' %>

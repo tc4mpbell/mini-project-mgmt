@@ -1,0 +1,8 @@
+<div class="btn-group">
+  <% task.available_statuses.each do |name| %>
+    <%= label :task, :status, value: name, class: 'btn' do %>
+      <%= radio_button :task, :status, name %>
+      <%= name.to_s.humanize %>
+    <% end %>
+  <% end %>
+</div>

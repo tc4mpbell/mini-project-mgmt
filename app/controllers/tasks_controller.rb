@@ -5,7 +5,9 @@ class TasksController < ApplicationController
 
     if @task.update(task_params)
       respond_to do |format|
-        format.js 
+        format.js {
+          render json: @task
+        }
       end
     else
       respond_to do |format|
@@ -20,6 +22,6 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:task)
+    params.require(:task).permit(:task, :status)
   end
 end
