@@ -10,7 +10,7 @@
 
     <div class='col-task'>
       <%#= task.task %>
-      <%= f.text_field :task, rows: 3 %>
+      <%= f.text_area :task, rows: 2 %>
     </div>
 
     <!--div class='col-log'>
@@ -26,7 +26,7 @@
     </div>
 
     <div class='col-assign'>
-      <%= f.collection_select :assignee_id, current_organization.users, :id, :full_name, prompt: '-- assignee --' %>
+      <%= f.collection_select :assignee_id, current_organization.users, :id, :full_name, include_blank: '-- assignee --' %>
       <a href="">assign to me</a>
     </div>
 

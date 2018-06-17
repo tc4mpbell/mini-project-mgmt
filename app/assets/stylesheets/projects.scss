@@ -21,7 +21,7 @@
 //   flex: 0 0 120px;
 // }
 .col-status {
-  flex: 0 0 170px;
+  flex: 0 0 190px;
 }
 .col-assign {
   flex: 0 0 150px;
@@ -41,4 +41,18 @@
 
 .body .col-category {
   font-size: 12px;
+}
+
+.status-selector {
+  // position: absolute;
+  z-index: 1;
+
+  > .btn {
+    display: none;
+  }
+
+  &:hover > .btn,
+  > .btn:first-child {
+    display: block;
+  }
 }

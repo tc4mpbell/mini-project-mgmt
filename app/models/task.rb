@@ -20,17 +20,19 @@ class Task < ApplicationRecord
     canceled: 10
   }
 
+  attr_reader :new_status
+
   def available_statuses
     valid_statuses = {
       ready_for_work:    %i(in_progress canceled),
-      in_progress:       %i(blocked on_hold ready_for_review canceled ready_for_work),
-      blocked:           %i(ready_for_work canceled),
-      on_hold:           %i(ready_for_work canceled),
-      ready_for_review:  %i(failed_review ready_for_testing canceled),
-      failed_review:     %i(in_progress canceled),
-      ready_for_testing: %i(failed_testing ready_for_deploy canceled),
-      failed_testing:    %i(in_progress canceled),
-      ready_for_deploy:  %i(complete in_progress canceled),
+      in_progress:       %i(blocked on_hold ready_for_review ready_for_work),
+      blocked:           %i(ready_for_work),
+      on_hold:           %i(ready_for_work),
+      ready_for_review:  %i(failed_review ready_for_testing),
+      failed_review:     %i(in_progress),
+      ready_for_testing: %i(failed_testing ready_for_deploy),
+      failed_testing:    %i(in_progress),
+      ready_for_deploy:  %i(complete in_progress),
       complete:          %i(ready_for_work),
       canceled:          %i(ready_for_work)
     }

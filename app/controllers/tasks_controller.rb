@@ -3,6 +3,8 @@ class TasksController < ApplicationController
     # @TODO authorize
     @task = Task.find(params[:id])
 
+    params[:task][:status] = params[:task][:new_status] unless params[:task][:new_status].blank?
+
     if @task.update(task_params)
       respond_to do |format|
         format.js

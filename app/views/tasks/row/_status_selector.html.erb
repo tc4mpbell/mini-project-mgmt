@@ -1,12 +1,2 @@
-<div class="btn-group">
-  <div class="btn disabled">
-    <%= "#{task.status.humanize}!" %>
-  </div>
-
-  <% task.available_statuses.each do |name| %>
-    <%= label :task, :status, value: name, class: "btn" do %>
-      <%= radio_button :task, :status, name %>
-      <%= name.to_s.humanize %>
-    <% end %>
-  <% end %>
-</div>
+<%= "#{task.status.humanize}!" %>
+<%= select :task, :new_status, task.available_statuses.collect{|status| [status.to_s.humanize, status] }, prompt: '-- next status --' %>
