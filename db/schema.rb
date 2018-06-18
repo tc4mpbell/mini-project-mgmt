@@ -10,13 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_17_130635) do
+ActiveRecord::Schema.define(version: 2018_06_17_210822) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.integer "project_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "teamwork_list_id"
     t.index ["project_id"], name: "index_categories_on_project_id"
   end
 
@@ -24,6 +25,7 @@ ActiveRecord::Schema.define(version: 2018_06_17_130635) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "teamwork_api_url"
   end
 
   create_table "projects", force: :cascade do |t|
@@ -31,6 +33,8 @@ ActiveRecord::Schema.define(version: 2018_06_17_130635) do
     t.integer "organization_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "teamwork_id"
+    t.datetime "last_synced_tasks_with_teamwork"
     t.index ["organization_id"], name: "index_projects_on_organization_id"
   end
 
@@ -43,6 +47,7 @@ ActiveRecord::Schema.define(version: 2018_06_17_130635) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "category_id"
+    t.integer "teamwork_id"
     t.index ["assignee_id"], name: "index_tasks_on_assignee_id"
     t.index ["category_id"], name: "index_tasks_on_category_id"
     t.index ["project_id"], name: "index_tasks_on_project_id"

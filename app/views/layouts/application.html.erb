@@ -10,9 +10,9 @@
 
   <body>
     <% if notice %>
-    <div class='container boxed notices'>
-      <p class="notice"><%= notice %></p>
-    </div>
+      <div class='container boxed notices'>
+        <p class="notice"><%= notice %></p>
+      </div>
     <% end %>
 
     <% if alert %>
@@ -21,7 +21,7 @@
       </div>
     <% end %>
 
-    <div class="container boxed">
+    <div class="main-content container boxed">
       <% if signed_in? %>
         <div class="right">
           <%= "#{["hello", "howdy", "hi", "g'day,", "top o' the mornin',"].sample.humanize} #{current_user.first_name}" %>

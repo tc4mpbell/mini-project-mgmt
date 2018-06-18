@@ -1,16 +1,36 @@
 <h1><%= @project.name %>!</h1>
 
 <!-- <a href="https://www.teamwork.com/launchpad/login?redirect_uri=http://localhost:3000">TEAMWORK LOGIN</a> -->
+<% if current_user.teamwork_access_token.blank? %>
+  <%= link_to "Teamwork Login!", "https://www.teamwork.com/launchpad/login?redirect_uri=#{api_teamwork_login_url}" %>
+<% else %>
+  Logged in with Teamwork &#x2728;
+  <hr>
 
-<%= link_to "Teamwork Login!", "https://www.teamwork.com/launchpad/login?redirect_uri=#{api_teamwork_login_url}" %>
+  <h3>Settin's</h3>
+  <%= form_with model: @project do |f| %>
+    <%= f.label :teamwork_id, "Teamwork Project ID" %>
+    <%= f.text_field :teamwork_id %>
+    <%= f.submit %>
+  <% end %>
 
-<nav>
-  <ul>
-    <li><a href="">Tasks</a></li>
-    <li><a href="">Settings</a></li>
-  </ul>
-</nav>
+  <hr>
 
+  <h3>Util</h3>
+  <nav>
+    <ul>
+      <li>
+        <%= link_to "Sync tasks with Teamwork", 
+          api_teamwork_sync_tasks_path(project_id: @project.id) %>
+        </li>
+      <!-- <li><a href="">Settings</a></li> -->
+    </ul>
+  </nav>
+
+  <hr>
+<% end %>
+
+<h3>Things to do</h3>
 <div class='tbl-tasks' valign='top'>
   <div class="header row">
     <div class='col-id'>#</div>
