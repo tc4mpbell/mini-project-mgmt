@@ -22,25 +22,25 @@ class Api::TeamworkController < ApplicationController
   end
 
   def sync_tasks_to_teamwork 
-
     # find or create a task list for each category
-    project.categories.where(teamwork_list_id: nil).first(2).each do |unsynced_category|
-      res = api.create('tasklists', {
-        'todo-list': { name: unsynced_category.name }
-      })
-      unsynced_category.update(teamwork_list_id: res['id']) if res
+    project.categories.where(teamwork_list_id: nil).each do |unsynced_category|
+      list_id = api.find_or_create_task_list_by_name(unsynced_category.name)
+      unsynced_category.update!(teamwork_list_id: list_id) if list_id
+    end
+    
+    project.categories.each do |category|
+      return unless category.teamwork_list_id
+      # shoot the tasks over!
+      api.add_tasks_to_tasklist(category.teamwork_list_id, category.tasks)
     end
 
-    # puts "LISTS #{lists.inspect}"
+    list_id = api.find_or_create_task_list_by_name("Uncategorized")
+    api.add_tasks_to_tasklist(list_id, project.tasks.where(category_id: nil))
 
-    # tasks = api.get_tasks
+    # currently unused
+    @project.update!(last_synced_tasks_with_teamwork: DateTime.now) #.strftime("%Y%mdDHMS"))
 
-    # tasks["todo-items"].each do |task|
-    #   puts "GOT a TASK #{task.inspect}\n\n\n"
-    #   sync_task(task)
-    # end
-
-    #@project.update(last_synced_tasks_with_teamwork: DateTime.now.strftime("%Y%mdDHMS"))
+    redirect_to project
   end
 
 

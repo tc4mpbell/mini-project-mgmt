@@ -20,8 +20,10 @@
   <nav>
     <ul>
       <li>
-        <%= link_to "Sync tasks with Teamwork", 
-          api_teamwork_sync_tasks_path(project_id: @project.id) %>
+        <%= link_to "Sync tasks from here to Teamwork", 
+          api_teamwork_sync_tasks_to_teamwork_path(project_id: @project.id) %>
+          (last synced 
+          <span data-user-date><%= @project.last_synced_tasks_with_teamwork.to_s %></span>)
         </li>
       <!-- <li><a href="">Settings</a></li> -->
     </ul>
