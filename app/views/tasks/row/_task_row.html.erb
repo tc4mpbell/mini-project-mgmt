@@ -1,4 +1,4 @@
-<%= form_with model: task, class: "row-task-#{task.id}" do |f| %>
+<%= form_with model: task, class: "task-status-#{task.status} row-task-#{task.id}" do |f| %>
   <div class="row">
     <div class='col-id'>
       <%= task.id %>

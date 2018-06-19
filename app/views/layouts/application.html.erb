@@ -23,12 +23,16 @@
 
     <div class="main-content container boxed">
       <% if signed_in? %>
-        <div class="right">
-          <%= "#{["hello", "howdy", "hi", "g'day,", "top o' the mornin',"].sample.humanize} #{current_user.first_name}" %>
+        <div class='opposites'>
+          <div>
+            <%= link_to 'Home', authenticated_root_path %>
+          </div>
+          <div>
+            <%= "#{["hello", "howdy", "hi", "g'day,", "top o' the mornin',"].sample.humanize} #{current_user.first_name}" %>
 
-          <%= link_to "logout", destroy_user_session_path, :method => :delete %>
-        </div> 
-
+            <%= link_to "logout", destroy_user_session_path, :method => :delete %>
+          </div> 
+        </div>
         <hr>
       <% end %>
       <%= yield %>

@@ -127,6 +127,11 @@ input[type="submit"]:hover {
 //   color: #eee;
 // }
 
+.opposites {
+  display: flex;
+  justify-content: space-between;
+}
+
 .right {
   text-align: right;
 }

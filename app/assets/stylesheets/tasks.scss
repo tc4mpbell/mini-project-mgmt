@@ -6,3 +6,96 @@
   background: #fff;
   color: #222;
 }
+
+.task-status-blocked {
+  background: rgb(180, 58, 70);
+  background: linear-gradient(
+    90deg,
+    rgba(180, 58, 70, 1) 0%,
+    rgba(253, 29, 29, 1) 50%,
+    rgba(252, 176, 69, 1) 100%
+  );
+}
+
+.task-status-in_progress {
+  background: rgb(197, 195, 227);
+  background: linear-gradient(
+    90deg,
+    rgba(197, 195, 227, 1) 0%,
+    rgba(105, 105, 157, 1) 35%,
+    rgba(0, 212, 255, 1) 100%
+  );
+}
+
+.task-status-canceled {
+  background: rgb(186, 186, 186);
+  background: linear-gradient(
+    198deg,
+    rgba(186, 186, 186, 1) 0%,
+    rgba(130, 130, 130, 1) 100%
+  );
+}
+
+.task-status-ready_for_review {
+  background: rgb(63, 94, 251);
+  background: radial-gradient(
+    circle,
+    rgba(63, 94, 251, 1) 0%,
+    rgba(252, 70, 107, 1) 100%
+  );
+}
+
+.task-status-failed_testing {
+  background: rgb(180, 58, 70);
+  background: radial-gradient(
+    circle,
+    rgba(180, 58, 70, 1) 0%,
+    rgba(227, 253, 29, 1) 50%,
+    rgba(252, 176, 69, 1) 100%
+  );
+}
+.task-status-failed_review {
+  background: rgb(251, 197, 63);
+  background: linear-gradient(
+    90deg,
+    rgba(251, 197, 63, 1) 0%,
+    rgba(210, 252, 70, 1) 100%
+  );
+}
+
+.task-status-ready_for_testing {
+  background: rgb(34, 193, 195);
+  background: linear-gradient(
+    0deg,
+    rgba(34, 193, 195, 1) 0%,
+    rgba(16, 182, 17, 1) 100%
+  );
+}
+
+.task-status-ready_for_deploy {
+  background: rgb(227, 195, 227);
+  background: linear-gradient(
+    90deg,
+    rgba(227, 195, 227, 1) 0%,
+    rgba(105, 105, 157, 1) 35%,
+    rgba(241, 0, 255, 1) 100%
+  );
+}
+
+.task-status-complete {
+  background: rgb(0, 204, 255);
+  background: linear-gradient(
+    90deg,
+    rgba(0, 204, 255, 1) 0%,
+    rgba(0, 255, 109, 1) 100%
+  );
+}
+
+.task-status-on_hold {
+  background: rgb(139, 143, 144);
+  background: linear-gradient(
+    34deg,
+    rgba(139, 143, 144, 1) 0%,
+    rgba(219, 224, 222, 1) 100%
+  );
+}
