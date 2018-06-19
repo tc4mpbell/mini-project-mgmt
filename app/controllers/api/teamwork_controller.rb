@@ -39,7 +39,7 @@ class Api::TeamworkController < ApplicationController
     api.add_tasks_to_tasklist(list_id, project.tasks.where(category_id: nil))
 
     # currently unused
-    @project.update!(last_synced_tasks_with_teamwork: DateTime.now) #.strftime("%Y%mdDHMS"))
+    @project.update!(last_synced_tasks_with_teamwork: DateTime.now)
 
     redirect_to project
   end

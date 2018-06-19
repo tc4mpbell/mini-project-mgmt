@@ -5,6 +5,7 @@ class Task < ApplicationRecord
 
   validates :project, presence: true
   validates :task, presence: true
+  validates_uniqueness_of :task, scope: :category
 
   enum status: {
     ready_for_work: 0,

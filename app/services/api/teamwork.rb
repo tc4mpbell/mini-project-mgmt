@@ -5,6 +5,8 @@ class Api::Teamwork
     @project      = project
     @user         = user
     @organization = @user.organization
+
+    @tasks = []
   end
 
   def get_task_lists
@@ -15,16 +17,19 @@ class Api::Teamwork
   end
 
   def get_tasks
+    puts "\n\n* get tasks #{@tasks.count}\n\n"
     tasks_url = teamwork_project_url(@project.teamwork_id, 'tasks')
 
     params = {}
-    # params[:updatedAfterDate] = @project.last_synced_tasks_with_teamwork
+    # params[:updatedAfterDate] = @project.last_synced_tasks_with_teamwork.strftime("%Y%mdDHMS"))
     
-    tasks = get(tasks_url, params)
+    tasks = get(tasks_url, params, use_cache: !@tasks.empty?)
 
-    tasks['todo-items'] if tasks
-
-    []
+    if tasks
+      @tasks = tasks['todo-items']
+    else
+      @tasks = []
+    end
   end
 
   def find_or_create_task_list_by_name(name)
@@ -46,24 +51,36 @@ class Api::Teamwork
   def add_tasks_to_tasklist(list_id, tasks)
     url = teamwork_url("tasklists/#{list_id}/tasks")
 
+    puts "* adding #{tasks.count} to tasklist #{list_id}"
+
     tasks.each do |task|
       next if task.teamwork_id.present?
       # already there?
+      # throw "in add: #{get_tasks.find{|t| t['id'] == 10724344}}"
+
+
       existing_task = get_tasks.find { |tw_task| 
-        tw_task['content'] == task.task 
+        # puts "IN LOOP"
+        # puts "\n* comparing #{tw_task['content']} to #{task.task}\n#{tw_task['content'].strip == task.task.strip}\n"
+        tw_task['content'].strip == task.task.strip
       }
-      puts "EXISTING TASK #{existing_task['id']}" if existing_task
-      return existing_task['id'] if existing_task
+      puts "EXISTING TASK #{existing_task}" if existing_task
 
-      # not there! GO GO GO
-      res = post(url, {
-        'todo-item': {
-          content: task.task
-        }
-      })
+      if existing_task
+        tw_task_id = existing_task['id']
+      else
+        # not there! GO GO GO
+        res = post(url, {
+          'todo-item': {
+            content: task.task
+          }
+        })
 
-      puts "* added: #{res.inspect}"
-      task.update(teamwork_id: res['id']) if res['id']
+        puts "* added: #{res.inspect}"
+        tw_task_id = res['id']
+      end
+
+      task.update(teamwork_id: tw_task_id) if tw_task_id
     end
   end
 
@@ -85,26 +102,35 @@ class Api::Teamwork
     throw res
   end
 
-  def get url, params = nil
-    Rails.cache.fetch(url, expires_in: 5.minutes) do
-      puts "UNCACHED GET #{url}"
-
-      uri = URI(url)
-      uri.query = URI.encode_www_form(params) if params
-
-      req = Net::HTTP::Get.new(uri)
-      req['Authorization'] = "Bearer #{@user.teamwork_access_token}"
-
-      res = Net::HTTP.start(uri.hostname, uri.port, use_ssl: true) {|http|
-        http.request(req)
-      }
-
-      # puts "GET: #{res.body.inspect}"
-      
-      return JSON.parse(res.body) if res.is_a?(Net::HTTPSuccess)
-
-      nil
+  def get url, params = nil, use_cache: true
+    puts "\n\nUSE CACHE #{use_cache}\n\n"
+    if use_cache
+      Rails.cache.fetch(url, expires_in: 5.minutes) do
+        get_uncached(url, params)
+      end
+    else
+      get_uncached(url, params)
     end
+  end
+
+  def get_uncached url, params
+    puts "UNCACHED GET #{url}"
+
+    uri = URI(url)
+    uri.query = URI.encode_www_form(params) if params
+
+    req = Net::HTTP::Get.new(uri)
+    req['Authorization'] = "Bearer #{@user.teamwork_access_token}"
+
+    res = Net::HTTP.start(uri.hostname, uri.port, use_ssl: true) {|http|
+      http.request(req)
+    }
+
+    # puts "GET: #{res.body.inspect}"
+    
+    return JSON.parse(res.body) if res.is_a?(Net::HTTPSuccess)
+
+    nil
   end
 
   def teamwork_project_url project_id, to
