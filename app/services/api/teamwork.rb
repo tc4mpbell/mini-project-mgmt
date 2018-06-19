@@ -22,8 +22,6 @@ class Api::Teamwork
     
     tasks = get(tasks_url, params)
 
-    puts "TASKS #{tasks.inspect}"
-
     tasks['todo-items'] if tasks
 
     []
@@ -35,7 +33,7 @@ class Api::Teamwork
     existing_task_list = get_task_lists.find { |list| 
       list['name'] == name 
     }
-    puts "EXISTING LIST #{existing_task_list}" if existing_task_list
+
     return existing_task_list['id'] if existing_task_list
 
     res = post(url, {
@@ -82,8 +80,6 @@ class Api::Teamwork
       http.request(req)
     end
 
-    puts "AFTER POST #{res.body.inspect}"
-
     return JSON.parse(res.body) if res.is_a?(Net::HTTPSuccess)
 
     throw res
@@ -103,7 +99,7 @@ class Api::Teamwork
         http.request(req)
       }
 
-      puts "GET: #{res.body.inspect}"
+      # puts "GET: #{res.body.inspect}"
       
       return JSON.parse(res.body) if res.is_a?(Net::HTTPSuccess)
 

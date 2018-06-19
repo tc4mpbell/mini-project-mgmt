@@ -30,6 +30,7 @@ class Api::TeamworkController < ApplicationController
     
     project.categories.each do |category|
       return unless category.teamwork_list_id
+      puts "* syncing category #{category.name}"
       # shoot the tasks over!
       api.add_tasks_to_tasklist(category.teamwork_list_id, category.tasks)
     end
@@ -52,14 +53,7 @@ class Api::TeamworkController < ApplicationController
   end
 
   def project
-    @project = current_organization.projects.find(params[:project_id])
-  end
-
-
-  def save_task_to_teamwork task
-
-
-    #{"id"=>10725052, "canComplete"=>true, "comments-count"=>0, "description"=>"", "has-reminders"=>false, "has-unread-comments"=>false, "private"=>0, "content"=>"File shares", "order"=>2002, "project-id"=>376889, "project-name"=>"Dynex - BRS Utility", "todo-list-id"=>941793, "todo-list-name"=>"Infrastructure", "tasklist-private"=>false, "tasklist-isTemplate"=>false, "status"=>"new", "company-name"=>"Dynex Capital", "company-id"=>618895, "creator-id"=>91928, "creator-firstname"=>"Taylor", "creator-lastname"=>"Campbell", "completed"=>false, "start-date"=>"", "due-date-base"=>"", "due-date"=>"", "created-on"=>"2018-06-15T14:05:40Z", "last-changed-on"=>"2018-06-15T14:05:40Z", "position"=>2002, "estimated-minutes"=>0, "priority"=>"", "progress"=>0, "harvest-enabled"=>false, "parentTaskId"=>"", "lockdownId"=>"", "tasklist-lockdownId"=>"", "has-dependencies"=>0, "has-predecessors"=>0, "hasTickets"=>false, "timeIsLogged"=>"0", "attachments-count"=>0, "predecessors"=>[], "canEdit"=>true, "viewEstimatedTime"=>true, "creator-avatar-url"=>"https://s3.amazonaws.com/TWFiles/93850/userAvatar/tf_27C58479-0302-48BB-E0F3D470C8994245.Taylor2017.png", "canLogTime"=>true, "userFollowingComments"=>false, "userFollowingChanges"=>false, "DLM"=>0}
+    @project = current_organization.projects.find(params[:project_id]) if params[:project_id]
   end
 
 end

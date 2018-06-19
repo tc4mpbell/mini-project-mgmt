@@ -1,3 +1,2 @@
-Turbolinks.clearCache()
 // Update the row with the result
 document.querySelector(".row-task-<%= @task.id %>").outerHTML = "<%=j render partial: '/tasks/row/task_row', locals: {task: @task} %>"

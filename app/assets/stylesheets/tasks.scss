@@ -7,6 +7,17 @@
   color: #222;
 }
 
+.task-status-ready_for_work {
+  background: rgb(246, 183, 247);
+  background: linear-gradient(
+    90deg,
+    rgba(246, 183, 247, 1) 0%,
+    rgba(220, 247, 159, 1) 35%,
+    rgba(150, 210, 247, 1) 74%,
+    rgba(252, 238, 161, 1) 95%
+  );
+}
+
 .task-status-blocked {
   background: rgb(180, 58, 70);
   background: linear-gradient(

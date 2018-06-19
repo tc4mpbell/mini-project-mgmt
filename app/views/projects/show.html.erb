@@ -50,10 +50,5 @@
   </div>
 </div>
 
-<form action="">
-  <label for="">Task</label>
-  <br>
-  <textarea name="name" rows="3" cols="80"></textarea>
-</form>
-
-<button>Add a task</button>
+<h3>Add a task</h3>
+<%= render "/tasks/row/task_row", task: @project.tasks.new(project: @project) %>

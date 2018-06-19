@@ -3,7 +3,7 @@ class Task < ApplicationRecord
   belongs_to :category, optional: true
   belongs_to :assignee, class_name: 'User', optional: true
 
-  validate :must_belong_to_either_project_or_category
+  validates :project, presence: true
   validates :task, presence: true
 
   enum status: {
@@ -38,11 +38,5 @@ class Task < ApplicationRecord
     }
 
     valid_statuses[self.status.to_sym]
-  end
-
-  private
-
-  def must_belong_to_either_project_or_category
-    errors.add(:base, "must belong to either a project or a category") unless category.present? || project.present?
   end
 end

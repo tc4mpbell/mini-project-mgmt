@@ -1,15 +1,17 @@
-<%= form_with model: task, class: "task-status-#{task.status} row-task-#{task.id}" do |f| %>
+<%= form_with model: task, class: "task-status-#{task.status} row-task-#{task.id}", data: { 'row-task-id': task.id} do |f| %>
+
+  <%= f.hidden_field :project_id, value: task&.project&.id %>
+
   <div class="row">
     <div class='col-id'>
       <%= task.id %>
     </div>
     
     <div class='col-category'>
-      <%= task&.category&.name || 'Uncategorized' %>
+      <%= f.collection_select :category_id, task.project.categories, :id, :name, include_blank: 'Uncategorized' %>
     </div>
 
     <div class='col-task'>
-      <%#= task.task %>
       <%= f.text_area :task, rows: 2 %>
     </div>
 

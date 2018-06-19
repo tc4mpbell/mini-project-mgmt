@@ -1,0 +1,2 @@
+// Add a new row with the result
+document.querySelector(".tbl-tasks .body").insertAdjacentHTML("beforeend", "<%=j render partial: '/tasks/row/task_row', locals: {task: @task} %>")
