@@ -6,7 +6,11 @@ MAINTAINER marko@codeship.com
 # Debian image, we use apt-get to install those.
 RUN apt-get update && apt-get install -y \
   build-essential \
-  nodejs
+  nodejs sqlite3
+
+ENV RAILS_ENV production
+ENV RAILS_SERVE_STATIC_FILES true
+ENV RAILS_LOG_TO_STDOUT true
 
 # Configure the main working directory. This is the base
 # directory used in any further RUN, COPY, and ENTRYPOINT
@@ -19,10 +23,15 @@ WORKDIR /app
 # will be cached unless changes to one of those two files
 # are made.
 COPY Gemfile Gemfile.lock ./
-RUN gem install bundler && bundle install --jobs 20 --retry 5
+RUN gem install bundler
+# && bundle install --jobs 20 --retry 5
+RUN bundle config --global frozen 1
+RUN bundle install --without development test
 
 # Copy the main application.
 COPY . ./
+
+RUN bundle exec rake DATABASE_URL=postgresql:does_not_exist assets:precompile
 
 # Expose port 3000 to the Docker host, so we can access it
 # from the outside.
